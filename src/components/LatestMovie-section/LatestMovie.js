@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
-
-
-
+import Slider from 'infinite-react-carousel';
 class LatestMovie extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +19,6 @@ class LatestMovie extends Component {
     componentDidMount() {
         this.getList();
         // this.getIdMovie();
-
     }
 
     getList() {
@@ -31,34 +27,21 @@ class LatestMovie extends Component {
         })
             .then((response) => {
                 const movie = response.data
-                ///const id = response.data[0].id
-                console.log(movie)
-
                 this.setState({ movie });
-
             })
             .catch((error) => {
                 console.log(error)
             });
     }
-
-    // getIdMovie() {
-
-    //     axios.get('http://127.0.0.1:8000/api/getMovieId/' + this.state.id, {
-
-    //     })
-
-    //         .then((response) => {
-    //             const movieId = response.data
-
-    //             this.setState({ movieId });
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
-
     render() {
+        const settings = {
+            slidesToShow: 3,
+            autoplay: true,
+            pauseOnHover: false,
+            virtualList: true,
+            duration: 20,
+            autoplaySpeed: 3000,
+        };
         return (
 
             < div className="section" >
@@ -66,37 +49,39 @@ class LatestMovie extends Component {
                     <div className="section-header">
                         latest movies
                     </div>
-                    <div className="movies-slide carousel-nav-center owl-carousel">
-                        {this.state.movie.map((movie, index) => {
-                            return (
-                                <a key={index} href={`detailsMovie/${movie.id}`} className="movie-item">
-                                    <img src="./images/movies/taytromcn.jpg" alt="" />
-                                    <div className="movie-item-content">
-                                        <div className="movie-item-title">
-                                            {movie.name}
+                    <Slider {...settings}>
+                        <div>
+                            {this.state.movie.map((movie, index) => {
+                                return (
+                                    <a key={index} href={`detailsMovie/${movie.id}`} className="movie-item">
+                                        <img src="./images/movies/taytromcn.jpg" alt="" />
+                                        <div className="movie-item-content">
+                                            <div className="movie-item-title">
+                                                {movie.name}
 
+                                            </div>
+                                            <div className="movie-infos">
+                                                <div className="movie-info">
+                                                    <i className="bx bxs-star" />
+                                                    <span>{movie.rate}</span>
+                                                </div>
+                                                <div className="movie-info">
+                                                    <i className="bx bxs-time" />
+                                                    <span>120 mins</span>
+                                                </div>
+                                                <div className="movie-info">
+                                                    <span>HD</span>
+                                                </div>
+                                                <div className="movie-info">
+                                                    <span>16+</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="movie-infos">
-                                            <div className="movie-info">
-                                                <i className="bx bxs-star" />
-                                                <span>{movie.rate}</span>
-                                            </div>
-                                            <div className="movie-info">
-                                                <i className="bx bxs-time" />
-                                                <span>120 mins</span>
-                                            </div>
-                                            <div className="movie-info">
-                                                <span>HD</span>
-                                            </div>
-                                            <div className="movie-info">
-                                                <span>16+</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            )
-                        })}
-                    </div>
+                                    </a>
+                                )
+                            })}
+                        </div>
+                    </Slider>
                 </div>
             </div >
 

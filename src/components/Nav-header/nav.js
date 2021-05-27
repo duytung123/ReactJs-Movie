@@ -2,19 +2,19 @@
 import React, { Component } from 'react';
 import { logout, getClients } from '../Login/Login';
 import axios from 'axios';
+
+
 class Navheader extends React.Component {
+
     constructor(props) {
+
         super(props);
         this.state = {
             clients: []
         };
         this.getClients = this.getClients.bind(this);
     }
-    componentDidMount() {
-        this.getClients();
-    }
     getClients() {
-
         axios.get('http://127.0.0.1:8000/api/getUser', {
 
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
@@ -23,29 +23,30 @@ class Navheader extends React.Component {
                 const clients = response.data;
                 console.log(clients)
                 this.setState({ clients: clients });
-
-                console.log("ok")
-
             })
             .catch((error) => {
                 console.log("lỗi");
-
             });
     }
-
+    // đợi sau khi login thành công thì lấy token ra if có token= > call ajax :3
+    componentDidMount() {
+        const gettoken = localStorage.getItem("token");
+        if (gettoken) {
+            this.getClients()
+        }
+    }
     render() {
         const gettoken = localStorage.getItem("token");
         return (
-
             < div className="nav-wrapper" >
                 <div className="container">
                     <div className="nav">
-                        <a href="#" className="logo">
+                        <a href="/" className="logo">
                             <i className="bx bx-movie-play bx-tada main-color" />Fl<span className="main-color">i</span> <span>x</span>
                         </a>
                         <ul className="nav-menu" id="nav-menu">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Genre</a></li>
+                            <li><a href="#">Category</a></li>
                             <li><a href="#">Movies</a></li>
                             <li><a href="#">Series</a></li>
                             <li><a href="#">About</a></li>

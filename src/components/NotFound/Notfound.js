@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './test.css';
 const NotFound = () => (
-
-    < div >
         < div className="stars" >
             <div className="custom-navbar">
                 <div className="brand-logo">
@@ -20,7 +18,7 @@ const NotFound = () => (
             </div>
             <div className="central-body">
                 <img className="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px" />
-                <a href="http://salehriaz.com/404Page/404.html" className="btn-go-home" target="_blank">GO BACK HOME</a>
+                <a href="/" className="btn-go-home" target="_blank">GO BACK HOME</a>
             </div>
             <div className="objects">
                 <img className="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px" />
@@ -40,7 +38,6 @@ const NotFound = () => (
                 <div className="star" />
             </div>
         </div >
-    </div >
 );
 
 export default NotFound;

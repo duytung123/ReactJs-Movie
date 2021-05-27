@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
-class LoginForm extends Component {
+class LoginForm extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
             isAuthenticated: false,
+            message:"sadaswwqsd",
             token: null,
             clients: []
         };
@@ -23,6 +24,7 @@ class LoginForm extends Component {
         });
 
     }
+   
     authenticate(token) {
         this.setState({
             isAuthenticated: true,
@@ -40,28 +42,29 @@ class LoginForm extends Component {
                 const token = response.data.token;
                 const mes = response.data.message;
                 localStorage.setItem("token", token);
+                localStorage.setItem("isAuthenticated", true);
                 this.setState({ token: token, isAuthenticated: true });
                 alert(mes)
-
             })
             .catch((error) => {
                 const status = error.response.status
                 if (status === 401) {
                     const mes = error.response.data.message;
-                    alert(mes)
+                    alert("Login Lỗi")
                 }
             });
     }
 
-
     render() {
-        if (this.state.isAuthenticated) {
+        console.log(this.state.isAuthenticated);
+        if (this.state.isAuthenticated==true) {
             return (
                 < Redirect to="/" />
-            )
+            )   
         }
-        return (
 
+        return (
+       
             <div className="img js-fullheight background">
                 <section className="ftco-section">
                     <div className="container">

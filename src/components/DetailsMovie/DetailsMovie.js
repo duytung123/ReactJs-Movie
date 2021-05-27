@@ -3,7 +3,7 @@ import Navheader from '../Nav-header/nav';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import axios from 'axios';
 
-
+import './bla.css';
 
 
 class DetailsMovie extends Component {
@@ -25,20 +25,16 @@ class DetailsMovie extends Component {
         this.getIdMovie();
     }
 
+    componentWillMount
     async getIdMovie() {
-        // const id = this.props.location.search
-        // console.log(id)
         await axios.get('http://127.0.0.1:8000/api/getMovieId/' + this.props.match.params.id, {
-
         })
 
 
             .then((response) => {
                 const moviesss = response.data
-                const id1 = response.data[0].id
-                alert("ád")
-
-                this.setState({ moviesss, id1 });
+                const id = response.data[0].id
+                this.setState({ moviesss, id });
             })
             .catch((error) => {
                 console.log(error)
@@ -62,6 +58,7 @@ class DetailsMovie extends Component {
                                 <video id="player" controls width="100%" height="300px">
                                     <source src={movies.id_film} type="video/mp4" />
                                 </video>
+                                <h1>alo</h1>
                             </div>
                         )
                     })}

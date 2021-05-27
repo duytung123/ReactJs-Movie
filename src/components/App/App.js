@@ -1,28 +1,33 @@
-
-
-
-import Hero from '../Hero-section/Hero';
-import LatestMovie from '../LatestMovie-section/LatestMovie';
-import Navheader from '../Nav-header/nav';
-import RoutingUrl from '../RoutingUrl/RoutingUrl';
-import TotalSection from '../TotalSection/TotalSection';
-
-import {
-  BrowserRouter, Router,
-  Route
-
-} from "react-router-dom";
-
-
-
+import React from 'react';
 import './App.css';
-import DetailsMovie from '../DetailsMovie/DetailsMovie';
+import RoutingUrl from '../RoutingUrl/RoutingUrl';
+import { BrowserRouter as Router, Route, Switch, BrowserRouter, Redirect, useParams } from "react-router-dom";
+import SimpleSlider from '../untils/utils';
+
 
 function App() {
+
   return (
 
     <div>
       <RoutingUrl />
+
+      {/* <BrowserRouter>
+      
+      <Switch>
+      <UnauthenticatedRoute
+          path="/login"
+          component={LoginForm}
+          appProps={{ isAuthenticated }}
+        />
+        <AuthenticatedRoute
+          path="/"
+          component={Hero}
+          appProps={{ isAuthenticated }}
+        />
+       
+      </Switch>
+      </BrowserRouter> */}
     </div>
 
   );
